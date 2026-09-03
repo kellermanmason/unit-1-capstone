@@ -1,0 +1,100 @@
+.landing-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 16px 24px;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.landing-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.brand-mark {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 50% 50% 45% 45%;
+  font-size: 11px;
+}
+
+.landing-content {
+  width: min(100%, 440px);
+  margin: 120px auto 0;
+  text-align: center;
+}
+
+.landing-eyebrow {
+  margin: 0 0 16px;
+  color: #86bc25;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.landing-content h1 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.1;
+}
+
+.landing-description {
+  margin: 20px auto 32px;
+  color: #d9d9d9;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.landing-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.landing-button {
+  box-sizing: border-box;
+  display: block;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.landing-button-primary {
+  background: #dcefcf;
+  color: #1a1a1a;
+}
+
+.landing-button-primary:hover {
+  background: #86bc25;
+}
+
+.landing-button-secondary {
+  border: 1px solid #dcefcf;
+  color: #dcefcf;
+}
+
+.landing-button-secondary:hover {
+  background: #dcefcf;
+  color: #1a1a1a;
+}
+
+.landing-ai-link {
+  margin-top: 12px;
+  color: #dcefcf;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.landing-ai-link:hover {
+  color: #86bc25;
+}

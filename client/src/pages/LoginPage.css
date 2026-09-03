@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+}
+
+.login-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 8px 24px 48px;
+  background: #1b1b1b;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.brand-mark {
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border: 1.5px solid #ffffff;
+  border-radius: 50% 50% 45% 45%;
+  font-size: 9px;
+}
+
+.login-content {
+  width: min(100%, 272px);
+  margin: 42px auto 0;
+}
+
+.login-content h1 {
+  margin: 0 0 6px;
+  font-size: 27px;
+  line-height: 1.2;
+}
+
+.login-description {
+  margin: 0 0 26px;
+  color: #e3e3e3;
+  font-size: 12px;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-field input {
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 0 9px;
+  border: 1.5px solid #ffffff;
+  border-radius: 8px;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.form-field input::placeholder {
+  color: #d6d6d6;
+}
+
+.form-field input:focus {
+  border-color: #86bc25;
+  box-shadow: 0 0 0 2px rgba(134, 188, 37, 0.25);
+}
+
+.forgot-password {
+  justify-self: end;
+  margin-top: -2px;
+  border: 0;
+  background: transparent;
+  color: #dcefcf;
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.login-button,
+.account-button {
+  display: flex;
+  width: 100%;
+  min-height: 37px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-button {
+  border: 1px solid #dcefcf;
+  background: #dcefcf;
+  color: #1b1b1b;
+  cursor: pointer;
+}
+
+.login-button:hover:not(:disabled) {
+  background: #86bc25;
+  border-color: #86bc25;
+}
+
+.login-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.account-button {
+  border: 1px solid #dcefcf;
+  color: #dcefcf;
+}
+
+.account-button:hover {
+  background: #dcefcf;
+  color: #1b1b1b;
+}
+
+.explore-link {
+  display: block;
+  margin-top: 19px;
+  color: #dcefcf;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.explore-link:hover,
+.forgot-password:hover {
+  color: #86bc25;
+}
+
+.login-error {
+  margin: 0;
+  color: #ff8f86;
+  font-size: 11px;
+}
