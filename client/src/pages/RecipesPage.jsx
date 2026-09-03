@@ -79,8 +79,8 @@ function RecipesPage() {
         {!loading && !error && filteredRecipes.length === 0 && (
           <p className="recipes-message">
             {searchTerm
-              ? "No recipes match your search."
-              : "No recipes have been created yet."}
+              ? "We couldn't find any recipes."
+              : "We couldn't find any recipes."}
           </p>
         )}
 

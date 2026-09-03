@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardPage from "./pages/DashboardPage";
 import RecipeCreatePage from "./pages/RecipeCreatePage";
 import RecipesPage from "./pages/RecipesPage"
-//import RecipeDetailPage from "./pages/RecipeDetailPage";
+import RecipeDetailPage from "./pages/RecipeDetailPage";
 
 import AIAssistantPage from "./pages/AIAssistantPage";
 
@@ -32,6 +32,11 @@ function App() {
   <Route path="/recipes/new" element={<RecipeCreatePage />} />
 </Route>
 <Route path="/recipes" element={<RecipesPage />} />
+<Route path="/recipes/:id" element={<RecipeDetailPage />} />
+<Route element={<ProtectedRoute />}>
+<Route path="/recipes/:id/edit" element={<RecipeCreatePage />} />
+</Route>
+
           <Route path="/ai-assistant" element={<AIAssistantPage />} />
         </Routes>
       </div>

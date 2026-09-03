@@ -1,13 +1,7 @@
-import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
 import "./RecipeCreatePage.css";
-
-
-
-
-
-
 
 function parseIngredients(value) {
   return value
@@ -19,17 +13,9 @@ function parseIngredients(value) {
         .split("|")
         .map((part) => part.trim());
 
-      if (quantity && name) {
-        return {
-          quantity,
-          name,
-        };
-      }
-
-      return {
-        quantity: "to taste",
-        name: ingredient,
-      };
+      return quantity && name
+        ? { quantity, name }
+        : { quantity: "to taste", name: ingredient };
     });
 }
 
@@ -51,12 +37,48 @@ function parseTags(value) {
     .filter(Boolean);
 }
 
+function formatIngredients(ingredients) {
+  if (typeof ingredients === "string") return ingredients;
+  if (!Array.isArray(ingredients)) return "";
+
+  return ingredients
+    .map((ingredient) => {
+      if (typeof ingredient === "string") return ingredient;
+
+      const quantity = ingredient.quantity || "to taste";
+      const name = ingredient.name || "";
+
+      return name ? `${quantity} | ${name}` : "";
+    })
+    .filter(Boolean)
+    .join(", ");
+}
+
+function formatInstructions(instructions) {
+  if (typeof instructions === "string") return instructions;
+  if (!Array.isArray(instructions)) return "";
+
+  return instructions
+    .map((instruction) => {
+      if (typeof instruction === "string") return instruction;
+
+      return instruction.description || instruction.text || "";
+    })
+    .filter(Boolean)
+    .join("\n");
+}
+
+function formatTags(tags) {
+  return Array.isArray(tags) ? tags.join(", ") : tags || "";
+}
+
 function RecipeCreatePage() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEditing = Boolean(id);
 
   const [form, setForm] = useState({
     title: "",
-    description: "",
     image: "",
     ingredients: "",
     instructions: "",
@@ -65,8 +87,37 @@ function RecipeCreatePage() {
 
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [loadingRecipe, setLoadingRecipe] = useState(isEditing);
 
   const imageInputRef = useRef(null);
+
+  useEffect(() => {
+    if (!id) return;
+
+    async function loadRecipe() {
+      try {
+        const response = await api.get(`/api/recipes/${id}`);
+        const recipe = response.data.recipe || response.data;
+
+        setForm({
+          title: recipe.title || "",
+          image: recipe.image || "",
+          ingredients: formatIngredients(recipe.ingredients),
+          instructions: formatInstructions(recipe.instructions),
+          tags: formatTags(recipe.tags),
+        });
+      } catch (loadError) {
+        setError(
+          loadError.response?.data?.message ||
+            "Unable to load this recipe.",
+        );
+      } finally {
+        setLoadingRecipe(false);
+      }
+    }
+
+    loadRecipe();
+  }, [id]);
 
   function handleImageChange(event) {
     const file = event.target.files?.[0];
@@ -136,8 +187,7 @@ function RecipeCreatePage() {
 
     const recipeData = {
       title: form.title.trim(),
-      description: form.description.trim(),
-      image: form.image.trim(),
+      image: form.image,
       ingredients: parseIngredients(form.ingredients),
       instructions: parseInstructions(form.instructions),
       tags: parseTags(form.tags),
@@ -146,25 +196,41 @@ function RecipeCreatePage() {
     setSaving(true);
 
     try {
-      await api.post("/api/recipes", recipeData);
-      navigate("/dashboard", {
-  state: {
-    recipeCreated: true,
-  },
-});
-    } catch (saveError) {
-  console.error("Recipe save failed:", {
-    status: saveError.response?.status,
-    data: saveError.response?.data,
-    message: saveError.message,
-  });
+      if (isEditing) {
+        await api.put(`/api/recipes/${id}`, recipeData);
+      } else {
+        await api.post("/api/recipes", recipeData);
+      }
 
-  setError(
-    saveError.response?.data?.message ||
-      saveError.response?.data?.error ||
-      "Unable to save your recipe."
-  );
-}
+      navigate("/dashboard", {
+        state: {
+          recipeCreated: !isEditing,
+          recipeUpdated: isEditing,
+        },
+      });
+    } catch (saveError) {
+      console.error("Recipe save failed:", {
+        status: saveError.response?.status,
+        data: saveError.response?.data,
+        message: saveError.message,
+      });
+
+      setError(
+        saveError.response?.data?.message ||
+          saveError.response?.data?.error ||
+          "Unable to save your recipe.",
+      );
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (loadingRecipe) {
+    return (
+      <main className="recipe-create-page">
+        <p className="recipe-form-status">Loading recipe...</p>
+      </main>
+    );
   }
 
   return (
@@ -179,7 +245,7 @@ function RecipeCreatePage() {
       </header>
 
       <section className="recipe-create-content">
-        <h1>Create a Recipe</h1>
+        <h1>{isEditing ? "Edit Recipe" : "Create a Recipe"}</h1>
 
         <form className="recipe-form" onSubmit={handleSubmit}>
           <label htmlFor="title">Title</label>
@@ -198,7 +264,7 @@ function RecipeCreatePage() {
             name="ingredients"
             value={form.ingredients}
             onChange={handleChange}
-            placeholder="Type 1 | Onion, 2 | tomatoes, 3 cloves | garlic"
+            placeholder="1 | Onion, 2 | tomatoes, 3 cloves | garlic"
             rows="3"
             required
           />
@@ -223,58 +289,56 @@ function RecipeCreatePage() {
             placeholder="Dinner, healthy, quick"
           />
 
+          <div className="image-section">
+            <label className="image-upload-box" htmlFor="image">
+              {form.image ? (
+                <img
+                  className="image-preview"
+                  src={form.image}
+                  alt="Selected recipe"
+                />
+              ) : (
+                <>
+                  <span className="image-plus">+</span>
+                  <span className="image-title">Add Image</span>
+                </>
+              )}
 
-         <div className="image-section">
-  <label className="image-upload-box" htmlFor="image">
-    {form.image ? (
-      <img
-        className="image-preview"
-        src={form.image}
-        alt="Selected recipe"
-      />
-    ) : (
-      <>
-        <span className="image-plus">+</span>
-        <span className="image-title">Add Image</span>
-      </>
-    )}
+              <input
+                ref={imageInputRef}
+                id="image"
+                name="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                hidden
+              />
+            </label>
 
-    <input
-      ref={imageInputRef}
-      id="image"
-      name="image"
-      type="file"
-      accept="image/*"
-      onChange={handleImageChange}
-      hidden
-    />
-  </label>
+            {form.image && (
+              <div className="image-actions">
+                <button
+                  className="image-action-button image-delete-button"
+                  type="button"
+                  onClick={handleRemoveImage}
+                  aria-label="Remove image"
+                  title="Remove image"
+                >
+                  🗑
+                </button>
 
-  {form.image && (
-    <div className="image-actions">
-      <button
-        className="image-action-button image-delete-button"
-        type="button"
-        onClick={handleRemoveImage}
-        aria-label="Remove image"
-        title="Remove image"
-      >
-        🗑
-      </button>
-
-      <button
-        className="image-action-button image-edit-button"
-        type="button"
-        onClick={handleEditImage}
-        aria-label="Replace image"
-        title="Replace image"
-      >
-        ✎
-      </button>
-    </div>
-  )}
-</div>
-
+                <button
+                  className="image-action-button image-edit-button"
+                  type="button"
+                  onClick={handleEditImage}
+                  aria-label="Replace image"
+                  title="Replace image"
+                >
+                  ✎
+                </button>
+              </div>
+            )}
+          </div>
 
           {error && (
             <p className="recipe-form-error" role="alert">
@@ -282,8 +346,16 @@ function RecipeCreatePage() {
             </p>
           )}
 
-          <button className="save-recipe-button" type="submit" disabled={saving}>
-            {saving ? "Saving..." : "Save Recipe"}
+          <button
+            className="save-recipe-button"
+            type="submit"
+            disabled={saving}
+          >
+            {saving
+              ? "Saving..."
+              : isEditing
+                ? "Save Changes"
+                : "Save Recipe"}
           </button>
 
           <Link className="cancel-recipe-button" to="/dashboard">

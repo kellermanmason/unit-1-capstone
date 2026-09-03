@@ -308,3 +308,87 @@
   font-weight: 700;
   text-decoration: none;
 }
+
+.recipe-card {
+  position: relative;
+}
+
+.recipe-card-content {
+  padding-bottom: 64px;
+}
+
+.recipe-card-actions {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.recipe-action-button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid #bbbbbb;
+  border-radius: 6px;
+  background: #53565a;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.recipe-action-button:hover {
+  background: #86bc25;
+  color: #0a0a0a;
+}
+
+.delete-action:hover {
+  background: #da291c;
+  color: #ffffff;
+}
+
+.delete-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.delete-modal {
+  width: min(400px, 100%);
+  padding: 32px;
+  border-radius: 12px;
+  background: #282728;
+  color: #ffffff;
+  text-align: center;
+}
+
+.delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.confirm-delete-button,
+.cancel-delete-button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.confirm-delete-button {
+  border: 1px solid #da291c;
+  background: #da291c;
+  color: #ffffff;
+}
+
+.cancel-delete-button {
+  border: 1px solid #bbbbbb;
+  background: transparent;
+  color: #ffffff;
+}
