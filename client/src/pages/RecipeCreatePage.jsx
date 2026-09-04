@@ -237,10 +237,11 @@ function RecipeCreatePage() {
     <main className="recipe-create-page">
       <header className="recipe-create-header">
         <Link className="recipe-create-brand" to="/dashboard">
-          <span className="brand-mark" aria-hidden="true">
-            S
-          </span>
-          <span>poonful</span>
+          <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
         </Link>
       </header>
 

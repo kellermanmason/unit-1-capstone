@@ -113,6 +113,13 @@
   font-weight: 700;
 }
 
+.auth-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}
+
 .image-help {
   color: #bdbdbd;
   font-size: 12px;

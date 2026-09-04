@@ -110,10 +110,10 @@
 .public-recipe-tag {
   padding: 5px 9px;
   border-radius: 999px;
-  background: #ffd100;
-  color: #282728;
+  background: #866208;
+  color: #fff;
   font-size: 12px;
-  font-weight: 700;
+  
 }
 
 .recipes-message,
@@ -123,4 +123,11 @@
 
 .recipes-error {
   color: #da291c;
+}
+
+.auth-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
 }

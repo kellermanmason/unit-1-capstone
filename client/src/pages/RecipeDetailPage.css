@@ -82,3 +82,10 @@
 .recipe-detail-error {
   color: #da291c;
 }
+
+.auth-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}

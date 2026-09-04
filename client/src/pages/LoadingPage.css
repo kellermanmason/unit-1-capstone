@@ -70,3 +70,10 @@
     opacity: 1;
   }
 }
+
+.auth-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}

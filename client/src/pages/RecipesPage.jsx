@@ -45,10 +45,11 @@ function RecipesPage() {
     <main className="recipes-page">
       <header className="recipes-header">
         <Link className="recipes-brand" to="/">
-          <span className="brand-mark" aria-hidden="true">
-            S
-          </span>
-          <span>poonful</span>
+          <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
         </Link>
 
         <Link className="recipes-login-link" to="/login">
@@ -62,7 +63,7 @@ function RecipesPage() {
         <input
           className="recipe-search"
           type="search"
-          placeholder="Search recipe titles..."
+          placeholder="Search recipes"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           aria-label="Search recipe titles"

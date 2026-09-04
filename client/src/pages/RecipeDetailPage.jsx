@@ -56,15 +56,25 @@ function RecipeDetailPage() {
 
   return (
     <main className="recipe-detail-page">
-      <header className="recipe-detail-header">
+      <header className="recipes-header">
+        <Link className="recipes-brand" to="/">
+          <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
+        </Link>
+
+        <Link className="recipes-login-link" to="/login">
+          Log In
+        </Link>
+      </header>
+      
         <Link to="/recipes" className="back-link">
           ← Recipe List
         </Link>
 
-        <Link to="/login" className="detail-login-link">
-          Log In
-        </Link>
-      </header>
+        
 
       <article className="recipe-detail-card">
         {recipe.image && (

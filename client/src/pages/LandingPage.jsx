@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
+import Navbar from "../components/Navbar";
 
 function LandingPage() {
   return (
     <main className="landing-page">
+      <Navbar />
       <header className="landing-brand" aria-label="Spoonful home">
-        <span className="brand-mark" aria-hidden="true">
-          S
-        </span>
-        <span>spoonful</span>
+        
+        
       </header>
 
       <section className="landing-content">

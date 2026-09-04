@@ -48,10 +48,11 @@ function LoginPage() {
   return (
     <main className="login-page">
       <header className="login-brand" aria-label="Spoonful home">
-        <span className="brand-mark" aria-hidden="true">
-          S
-        </span>
-        <span>poonful</span>
+        <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
       </header>
 
       <section className="login-content">

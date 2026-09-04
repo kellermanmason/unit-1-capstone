@@ -67,10 +67,11 @@ function SignupPage() {
   return (
     <main className="signup-page">
       <header className="signup-brand" aria-label="Spoonful home">
-        <span className="brand-mark" aria-hidden="true">
-          S
-        </span>
-        <span>poonful</span>
+        <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
       </header>
 
       <section className="signup-content">

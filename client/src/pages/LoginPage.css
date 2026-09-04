@@ -157,3 +157,10 @@ body {
   color: #ff8f86;
   font-size: 11px;
 }
+
+.auth-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}

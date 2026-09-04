@@ -128,3 +128,10 @@
   background: #dcefcf;
   color: #1a1a1a;
 }
+
+.auth-logo {
+  display: block;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}

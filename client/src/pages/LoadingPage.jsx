@@ -16,10 +16,11 @@ function LoadingPage() {
   return (
     <main className="loading-page">
       <div className="loading-content" role="status" aria-live="polite">
-        <div className="loading-mark" aria-hidden="true">
-          S
-        </div>
-        <h1>Spoonful</h1>
+        <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
         <p>Recipe Manager</p>
         <div className="loading-dots" aria-hidden="true">
           <span />

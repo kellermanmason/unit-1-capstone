@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#__next {
+  width: 100%;
+  min-height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #1a1a1a;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#root,
+#__next {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.page-shell {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #1a1a1a;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}

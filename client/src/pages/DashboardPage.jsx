@@ -91,10 +91,11 @@ function DashboardPage() {
     <main className="dashboard-page">
       <header className="dashboard-header">
         <Link className="dashboard-brand" to="/">
-          <span className="brand-mark" aria-hidden="true">
-            S
-          </span>
-          <span>poonful</span>
+          <img
+    className="auth-logo"
+    src="/spoonful-logo.png"
+    alt="Spoonful"
+  />
         </Link>
 
         <button className="logout-button" type="button" onClick={handleLogout}>
