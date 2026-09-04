@@ -300,8 +300,8 @@ function RecipeCreatePage() {
                 />
               ) : (
                 <>
-                  <span className="image-plus">+</span>
-                  <span className="image-title">Add Image</span>
+                  
+                  <span className="image-title">+ Add Image</span>
                 </>
               )}
 
