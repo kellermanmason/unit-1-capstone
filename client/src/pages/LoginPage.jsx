@@ -7,43 +7,81 @@ function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({
+  email: "",
+  password: "",
+  form: "",
+});
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(event) {
-    event.preventDefault();
-    setError("");
+  function validateLogin() {
+  const nextErrors = {};
 
-    if (!email.trim() || !password.trim()) {
-      setError("Email and password are required.");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await api.post("/api/users/login", {
-        email: email.trim(),
-        password,
-      });
-
-      const token = response.data.token || response.data.accessToken;
-
-      if (!token) {
-        throw new Error("No login token was returned.");
-      }
-
-      sessionStorage.setItem("token", token);
-      navigate("/loading");
-    } catch (loginError) {
-      setError(
-        loginError.response?.data?.message ||
-          "Login failed. Check your email and password."
-      );
-    } finally {
-      setLoading(false);
-    }
+  if (!email.trim()) {
+    nextErrors.email = "Please enter a valid email address. We couldn't find your account. Please try again.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    nextErrors.email = "Please enter a valid email address. We couldn't find your account. Please try again.";
   }
+
+  if (!password) {
+    nextErrors.password = "Your password doesn't match our records. Please try again.";
+  }
+
+  return nextErrors;
+}
+
+  async function handleLogin(event) {
+  event.preventDefault();
+
+  const validationErrors = validateLogin();
+
+  setErrors({
+    email: validationErrors.email || "",
+    password: validationErrors.password || "",
+    form: "",
+  });
+
+  if (Object.keys(validationErrors).length > 0) {
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await api.post("/api/users/login", {
+      email: email.trim(),
+      password,
+    });
+
+    const token = response.data.token || response.data.accessToken;
+
+    if (!token) {
+      throw new Error("No login token was returned.");
+    }
+
+    sessionStorage.setItem("token", token);
+
+    navigate("/loading", {
+      state: {
+        redirectTo: "/dashboard",
+      },
+    });
+  } catch (loginError) {
+  const responseData = loginError.response?.data;
+  const serverErrors = responseData?.errors || {};
+
+  setErrors({
+    email: serverErrors.email || responseData?.email || "",
+    password:
+      serverErrors.password ||
+      responseData?.password ||
+      "Your password doesn't match our records. Please try again.",
+    form: "",
+  });
+  } finally {
+    setLoading(false);
+  }
+}
 
   return (
     <main className="login-page">
@@ -61,40 +99,84 @@ function LoginPage() {
           Log in to your account to continue
         </p>
 
-        <form className="login-form" onSubmit={handleLogin}>
+        <form className="login-form" onSubmit={handleLogin} noValidate>
           <div className="form-field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Email"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
+  <label
+  htmlFor="email"
+  className={errors.email || errors.form ? "field-error" : ""}
+>
+  Email
+</label>
 
-          <div className="form-field">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
+<input
+  id="email"
+  type="email"
+  placeholder="Email"
+  autoComplete="email"
+  value={email}
+  aria-invalid={Boolean(errors.email || errors.form)}
+  aria-describedby={errors.email ? "email-error" : undefined}
+  onChange={(event) => {
+    setEmail(event.target.value);
+    setErrors((previous) => ({
+      ...previous,
+      email: "",
+      form: "",
+    }));
+  }}
+/>
 
-            <button className="forgot-password" type="button">
-              Forgot Password?
-            </button>
-          </div>
+  {errors.email && (
+    <p id="email-error" className="login-field-error">
+      {errors.email}
+    </p>
+  )}
+</div>
 
-          {error && (
-            <p className="login-error" role="alert">
-              {error}
-            </p>
-          )}
+<div className="form-field">
+  <label
+  htmlFor="password"
+  className={errors.password || errors.form ? "field-error" : ""}
+>
+  Password
+</label>
+
+<input
+  id="password"
+  type="password"
+  placeholder="Password"
+  autoComplete="current-password"
+  value={password}
+  aria-invalid={Boolean(errors.password || errors.form)}
+  aria-describedby={errors.password ? "password-error" : undefined}
+  onChange={(event) => {
+    setPassword(event.target.value);
+    setErrors((previous) => ({
+      ...previous,
+      password: "",
+      form: "",
+    }));
+  }}
+/>
+
+  {errors.password && (
+    <p id="password-error" className="login-field-error">
+      {errors.password}
+    </p>
+  )}
+
+  <button className="forgot-password" type="button">
+    Forgot Password?
+  </button>
+</div>
+
+          {errors.form && (
+  <p className="login-error" role="alert">
+    {errors.form}
+  </p>
+)}
+
+
 
           <button className="login-button" type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}

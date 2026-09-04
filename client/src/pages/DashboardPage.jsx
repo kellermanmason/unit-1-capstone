@@ -82,7 +82,7 @@ function DashboardPage() {
   if (loading) {
     return (
       <main className="dashboard-page">
-        <p className="dashboard-status">Loading your dashboard...</p>
+        
       </main>
     );
   }
@@ -178,22 +178,30 @@ function DashboardPage() {
 
                   <div className="recipe-card-actions">
   <Link
-    className="recipe-action-button"
+    className="recipe-action-link"
     to={`/recipes/${recipeId}/edit`}
     aria-label={`Edit ${recipe.title}`}
     title="Edit recipe"
   >
-    ✎
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 20h4L19 9l-4-4L4 16v4Z" />
+      <path d="m13 6 4 4" />
+    </svg>
   </Link>
 
   <a
-    className="recipe-action-button delete-action"
+    className="recipe-action-link delete-action"
     href={`#delete-${recipeId}`}
     aria-label={`Delete ${recipe.title}`}
     title="Delete recipe"
     onClick={(event) => openDeleteDialog(event, recipe)}
   >
-    🗑
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 7h16" />
+      <path d="M10 11v6M14 11v6" />
+      <path d="M6 7l1 13h10l1-13" />
+      <path d="M9 7V4h6v3" />
+    </svg>
   </a>
 </div>
                 </article>
@@ -220,6 +228,7 @@ function DashboardPage() {
             aria-labelledby="delete-recipe-title"
           >
             <h2 id="delete-recipe-title">Delete recipe?</h2>
+            <p>Do you want to delete this recipe? This action cannot be undone.</p>
 
             <div className="delete-modal-actions">
               <button

@@ -79,7 +79,10 @@ function SignupPage() {
 
         <form className="signup-form" onSubmit={handleSignup} noValidate>
           <div className="signup-field">
-            <label htmlFor="email">Username</label>
+            <label
+  htmlFor="email"
+  className={errors.email ? "signup-label-error" : ""}
+>Username</label>
             <input
               id="email"
               name="email"
@@ -95,7 +98,10 @@ function SignupPage() {
             )}
           </div>
           <div className="signup-field">
-            <label htmlFor="password">Password</label>
+            <label
+  htmlFor="password"
+  className={errors.password ? "signup-label-error" : ""}
+>Password</label>
             <input
               id="password"
               name="password"

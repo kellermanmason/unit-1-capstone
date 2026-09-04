@@ -90,7 +90,7 @@ body {
   margin-top: -2px;
   border: 0;
   background: transparent;
-  color: #dcefcf;
+  color: #c1e0a6;
   cursor: pointer;
   font-size: 8px;
   font-weight: 700;
@@ -111,8 +111,8 @@ body {
 }
 
 .login-button {
-  border: 1px solid #dcefcf;
-  background: #dcefcf;
+  border: 1px solid #c1e0a6;
+  background: #c1e0a6;
   color: #1b1b1b;
   cursor: pointer;
 }
@@ -128,19 +128,19 @@ body {
 }
 
 .account-button {
-  border: 1px solid #dcefcf;
-  color: #dcefcf;
+  border: 1px solid #c1e0a6;
+  color: #c1e0a6;
 }
 
 .account-button:hover {
-  background: #dcefcf;
+  background: #c1e0a6;
   color: #1b1b1b;
 }
 
 .explore-link {
   display: block;
   margin-top: 19px;
-  color: #dcefcf;
+  color: #c1e0a6;
   font-size: 12px;
   font-weight: 700;
   text-align: center;
@@ -154,7 +154,7 @@ body {
 
 .login-error {
   margin: 0;
-  color: #ff8f86;
+  color: #f2bcbc;
   font-size: 11px;
 }
 
@@ -163,4 +163,26 @@ body {
   width: 110px;
   height: auto;
   object-fit: contain;
+}
+
+.form-field label.field-error {
+  color: #f2bcbc;
+}
+
+.form-field input[aria-invalid="true"] {
+  border-color: #f2bcbc;
+  box-shadow: 0 0 0 2px rgba(255, 143, 134, 0.25)
+}
+
+.form-field input[aria-invalid="true"]:focus {
+  border-color: #f2bcbc;
+  box-shadow: 0 0 0 2px rgba(255, 143, 134, 0.25);
+}
+
+.login-field-error,
+.login-error {
+  margin: 0;
+  color: #f2bcbc;
+  font-size: 11px;
+  line-height: 1.4;
 }

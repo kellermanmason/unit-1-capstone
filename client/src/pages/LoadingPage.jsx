@@ -15,19 +15,15 @@ function LoadingPage() {
 
   return (
     <main className="loading-page">
-      <div className="loading-content" role="status" aria-live="polite">
+      <section className="loading-content" role="status" aria-live="polite">
         <img
     className="auth-logo"
     src="/spoonful-logo.png"
     alt="Spoonful"
   />
         <p>Recipe Manager</p>
-        <div className="loading-dots" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
+      
+      </section>
     </main>
   );
 }

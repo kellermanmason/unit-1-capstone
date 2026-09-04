@@ -69,7 +69,7 @@
 }
 
 .landing-button-primary {
-  background: #dcefcf;
+  background: #c1e0a6;
   color: #1a1a1a;
 }
 
@@ -78,18 +78,18 @@
 }
 
 .landing-button-secondary {
-  border: 1px solid #dcefcf;
-  color: #dcefcf;
+  border: 1px solid #c1e0a6;
+  color: #c1e0a6;
 }
 
 .landing-button-secondary:hover {
-  background: #dcefcf;
+  background: #c1e0a6;
   color: #1a1a1a;
 }
 
 .landing-ai-link {
   margin-top: 12px;
-  color: #dcefcf;
+  color: #c1e0a6;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;

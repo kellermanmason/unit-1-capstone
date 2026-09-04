@@ -96,9 +96,9 @@
   place-items: center;
   align-content: center;
   gap: 6px;
-  border: 1px solid #dcefcf;
+  border: 1px solid #c1e0a6;
   border-radius: 10px;
-  color: #dcefcf;
+  color: #c1e0a6;
   cursor: pointer;
   text-align: center;
 }
@@ -149,8 +149,8 @@
 
 .save-recipe-button {
   margin-top: 18px;
-  border: 1px solid #dcefcf;
-  background: #dcefcf;
+  border: 1px solid #c1e0a6;
+  background: #c1e0a6;
   color: #1a1a1a;
   cursor: pointer;
 }
@@ -166,18 +166,18 @@
 }
 
 .cancel-recipe-button {
-  border: 1px solid #dcefcf;
-  color: #dcefcf;
+  border: 1px solid #c1e0a6;
+  color: #c1e0a6;
 }
 
 .cancel-recipe-button:hover {
-  background: #dcefcf;
+  background: #c1e0a6;
   color: #1a1a1a;
 }
 
 .recipe-form-error {
   margin: 8px 0 0;
-  color: #ffaaa1;
+  color: #f2bcbc;
   font-size: 12px;
 }
 
@@ -221,11 +221,11 @@
 }
 
 .image-delete-button {
-  color: #dcefcf;
+  color: #c1e0a6;
 }
 
 .image-edit-button {
-  color: #dcefcf;
+  color: #c1e0a6;
 }
 
 .image-action-button:hover {

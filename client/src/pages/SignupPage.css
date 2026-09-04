@@ -75,13 +75,13 @@
 }
 
 .signup-field input[aria-invalid="true"] {
-  border-color: #d88484;
+  border-color: #f2bcbc;
 }
 
 .signup-field-error,
 .signup-form-error {
   margin: 0;
-  color: #dca0a0;
+  color: #f2bcbc;
   font-size: 10px;
   line-height: 1.4;
 }
@@ -134,4 +134,8 @@
   width: 110px;
   height: auto;
   object-fit: contain;
+}
+
+.signup-field label.signup-label-error {
+  color: #f2bcbc;
 }

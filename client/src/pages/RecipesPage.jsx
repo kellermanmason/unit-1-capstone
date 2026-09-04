@@ -94,42 +94,48 @@ function RecipesPage() {
 
               return (
                 <article className="public-recipe-card" key={recipeId}>
-                  <Link to={`/recipes/${recipeId}`}>
-                    {recipe.image ? (
-                      <img
-                        className="public-recipe-image"
-                        src={recipe.image}
-                        alt={recipe.title}
-                      />
-                    ) : (
-                      <div className="public-recipe-image no-recipe-image">
-                        No image
-                      </div>
-                    )}
+  {recipe.image ? (
+    <img
+      className="public-recipe-image"
+      src={recipe.image}
+      alt={recipe.title}
+    />
+  ) : (
+    <div className="public-recipe-image no-recipe-image">
+      No image
+    </div>
+  )}
 
-                    <div className="public-recipe-details">
-                      <h2>{recipe.title}</h2>
+  <div className="public-recipe-details">
+    <h2>{recipe.title}</h2>
 
-                      <p className="public-recipe-date">
-                        Created on{" "}
-                        {createdDate
-                          ? new Date(createdDate).toLocaleDateString()
-                          : "Date unavailable"}
-                      </p>
+    <p className="public-recipe-date">
+      Created on{" "}
+      {createdDate
+        ? new Date(createdDate).toLocaleDateString()
+        : "Date unavailable"}
+    </p>
 
-                      <div className="public-recipe-tags">
-                        {tags.map((tag, tagIndex) => (
-                          <span
-                            className="public-recipe-tag"
-                            key={`${tag}-${tagIndex}`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </Link>
-                </article>
+    <div className="public-recipe-tags">
+      {tags.map((tag, tagIndex) => (
+        <span
+          className="public-recipe-tag"
+          key={`${tag}-${tagIndex}`}
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <Link
+      className="view-recipe-link"
+      to={`/recipes/${recipeId}`}
+      aria-label={`View ${recipe.title} recipe`}
+    >
+      View Recipe
+    </Link>
+  </div>
+</article>
               );
             })}
           </div>

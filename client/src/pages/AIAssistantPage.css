@@ -14,7 +14,7 @@
 
 .ai-assistant-eyebrow {
   margin: 0 0 8px;
-  color: #dcefcf;
+  color: #c1e0a6;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
@@ -76,9 +76,9 @@
   align-items: center;
   justify-content: center;
   margin-top: 18px;
-  border: 1px solid #dcefcf;
+  border: 1px solid #c1e0a6;
   border-radius: 8px;
-  background: #dcefcf;
+  background: #c1e0a6;
   color: #1a1a1a;
   font-size: 13px;
   font-weight: 700;
@@ -97,13 +97,13 @@
 
 .ai-error {
   margin: 8px 0 0;
-  color: #ffaaa1;
+  color: #f2bcbc;
   font-size: 12px;
 }
 
 .ai-loading {
   margin: 18px 0 0;
-  color: #dcefcf;
+  color: #c1e0a6;
   font-size: 13px;
 }
 
@@ -153,7 +153,7 @@
 
 .ai-history-item h3 {
   margin: 0 0 4px;
-  color: #dcefcf;
+  color: #c1e0a6;
   font-size: 13px;
 }
 

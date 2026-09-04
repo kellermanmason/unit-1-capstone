@@ -10,6 +10,7 @@
 
 .loading-content {
   width: min(100% - 48px, 320px);
+  text-align: center;
 }
 
 .loading-mark {
@@ -75,5 +76,7 @@
   display: block;
   width: 110px;
   height: auto;
+  margin: 0 auto 24px;
   object-fit: contain;
 }
+

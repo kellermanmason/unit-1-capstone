@@ -37,7 +37,7 @@
 .logout-button {
   border: 0;
   background: transparent;
-  color: #dcefcf;
+  color: #c1e0a6;
   cursor: pointer;
   font-weight: 700;
 }
@@ -89,14 +89,14 @@
 }
 
 .add-recipe-button {
-  border: 1px solid #dcefcf;
-  background: #dcefcf;
+  display: block;
+  width: 175px;
+  text-align: center;
+  margin: 12px auto 0;
+  padding: 12px 24px;
+  border: 1px solid #c1e0a6;
+  background: #c1e0a6;
   color: #1a1a1a;
-}
-
-.add-recipe-button:hover {
-  border-color: #86bc25;
-  background: #86bc25;
 }
 
 .recipe-grid {
@@ -140,7 +140,7 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
-  color: #b9d99c;
+  color: #c1e0a6;
   font-size: 12px;
 }
 
@@ -158,26 +158,18 @@
 }
 
 .edit-button {
-  border: 1px solid #dcefcf;
+  border: 1px solid #c1e0a6;
   background: transparent;
-  color: #dcefcf;
+  color: #c1e0a6;
 }
 
 .delete-button {
-  border: 1px solid #da8179;
+  border: 1px solid #f2bcbc;
   background: transparent;
-  color: #ffaaa1;
+  color: #f2bcbc;
 }
 
-.edit-button:hover {
-  background: #dcefcf;
-  color: #1a1a1a;
-}
 
-.delete-button:hover {
-  background: #da291c;
-  color: #ffffff;
-}
 
 .empty-dashboard,
 .dashboard-status {
@@ -199,7 +191,7 @@
 
 .dashboard-error {
   margin-bottom: 24px;
-  color: #ffaaa1;
+  color: #f2bcbc;
 }
 
 @media (max-width: 650px) {
@@ -225,10 +217,10 @@
   width: fit-content;
   margin: 0 auto 16px;
   padding: 10px 16px;
-  border: 1px solid #86bc25;
+  border: 1px solid #57852f;
   border-radius: 999px;
-  background: #eef8df;
-  color: #31500d;
+  background: #57852f;
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
 }
@@ -302,15 +294,16 @@
   width: fit-content;
   margin: 12px auto 0;
   padding: 12px 24px;
-  border: 1px solid #dcefcf;
+  border: 1px solid #c1e0a6;
   border-radius: 8px;
-  color: #dcefcf;
+  color: #c1e0a6;
   font-weight: 700;
   text-decoration: none;
 }
 
 .recipe-card {
   position: relative;
+  overflow: hidden;
 }
 
 .recipe-card-content {
@@ -318,11 +311,13 @@
 }
 
 .recipe-card-actions {
-  position: absolute;
+   position: absolute;
+  right: 16px;
   bottom: 16px;
-  left: 16px;
+  z-index: 2;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 18px;
 }
 
 .recipe-action-button {
@@ -338,15 +333,7 @@
   text-decoration: none;
 }
 
-.recipe-action-button:hover {
-  background: #86bc25;
-  color: #0a0a0a;
-}
 
-.delete-action:hover {
-  background: #da291c;
-  color: #ffffff;
-}
 
 .delete-modal-backdrop {
   position: fixed;
@@ -382,8 +369,8 @@
 }
 
 .confirm-delete-button {
-  border: 1px solid #da291c;
-  background: #da291c;
+  border: 1px solid #c1e0a6;
+  background: #c1e0a6;
   color: #ffffff;
 }
 
@@ -398,4 +385,28 @@
   width: 110px;
   height: auto;
   object-fit: contain;
+}
+
+.recipe-action-link {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c1e0a6;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.recipe-action-link svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
 }
